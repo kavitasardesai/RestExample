@@ -1,0 +1,51 @@
+buildscript {
+    ext {
+        springBootVersion = '2.7.16'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
+    }
+}
+
+
+
+plugins {
+    id 'org.springframework.boot' version '2.7.16'
+    id 'java'
+   
+}
+
+repositories {
+    mavenCentral()
+}
+configurations{
+
+runtimeClasspath{
+extendsFrom developmentOnly
+}
+
+
+}
+apply plugin:'java'
+apply plugin:'eclipse'
+apply plugin:'org.springframework.boot'
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web:2.7.16'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.7.16'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test:2.7.5'
+    runtimeOnly 'org.postgresql:postgresql:42.2.9'
+    implementation 'org.projectlombok:lombok:1.18.20'
+    annotationProcessor 'org.projectlombok:lombok:1.18.20'
+    // https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api
+    implementation group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.1'
+
+    
+}
+
+test {
+    useJUnitPlatform()
+}
